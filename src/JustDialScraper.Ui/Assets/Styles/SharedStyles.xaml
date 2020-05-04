@@ -20,8 +20,17 @@
         <Setter Property="Margin" Value="2" />
     </Style>
 
+    <Style Selector="TextBox.Numeric">
+        <Setter Property="Margin" Value="2" />
+    </Style>
+
     <Style Selector="Button">
         <Setter Property="Margin" Value="2" />
+    </Style>
+
+    <Style Selector="Slider">
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
 
     <Style Selector="Button &gt; StackPanel">
