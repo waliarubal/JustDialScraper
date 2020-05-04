@@ -8,4 +8,36 @@
         <Setter Property="WindowStartupLocation" Value="CenterScreen" />
         <Setter Property="Icon" Value="/Assets/Images/Icon.ico" />
     </Style>
+
+    <Style Selector="TextBlock.Label">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+
+    <Style Selector="TextBox.Readonly">
+        <Setter Property="IsReadOnly" Value="True" />
+        <Setter Property="Margin" Value="2" />
+    </Style>
+
+    <Style Selector="Button">
+        <Setter Property="Margin" Value="2" />
+    </Style>
+
+    <Style Selector="Button &gt; StackPanel">
+        <Setter Property="Orientation" Value="Horizontal" />
+    </Style>
+
+    <Style Selector="Button &gt; StackPanel &gt; Path">
+        <Setter Property="Stretch" Value="Uniform" />
+        <Setter Property="Width" Value="22" />
+        <Setter Property="Height" Value="22" />
+        <Setter Property="Fill" Value="{DynamicResource ThemeForegroundBrush}" />
+    </Style>
+
+    <Style Selector="Button &gt; StackPanel &gt; TextBlock">
+        <Setter Property="Margin" Value="4 0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="12" />
+    </Style>
 </Styles>

@@ -8,5 +8,40 @@
     Width="800"
     Height="600"
     mc:Ignorable="d">
+    <Grid Margin="4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
+        <TextBlock Classes="Label" Text="Locations:" />
+        <TextBox Grid.Column="1" Classes="Readonly" />
+        <Button Grid.Column="2">
+            <StackPanel>
+                <Path Data="{StaticResource Icon.Location}" />
+                <TextBlock Text="Select..." />
+            </StackPanel>
+        </Button>
+
+        <TextBlock
+            Grid.Row="1"
+            Classes="Label"
+            Text="Keywords or Categories:" />
+        <TextBox
+            Grid.Row="1"
+            Grid.Column="1"
+            Classes="Readonly" />
+        <Button Grid.Row="1" Grid.Column="2">
+            <StackPanel>
+                <Path Data="{StaticResource Icon.Edit}" />
+                <TextBlock Text="Select..." />
+            </StackPanel>
+        </Button>
+    </Grid>
 </Window>
