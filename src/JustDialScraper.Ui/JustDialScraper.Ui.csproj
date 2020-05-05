@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <StartupObject>JustDialScraper.Ui.Program</StartupObject>
     <ApplicationIcon>Assets\Images\Icon.ico</ApplicationIcon>
@@ -13,7 +14,12 @@
       <SubType>Designer</SubType>
     </AvaloniaResource>
     <AvaloniaResource Include="Assets\Images\**" />
-    <Folder Include="ViewModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaResource Remove="Views\ManageView.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Views\ManageView.xaml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.9.9" />
@@ -21,6 +27,11 @@
     <PackageReference Include="Avalonia.ReactiveUI" Version="0.9.9" />
     <PackageReference Include="Deadpikle.AvaloniaProgressRing" Version="0.8.5" />
     <PackageReference Include="Material.Avalonia" Version="0.9.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ManageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JustDialScraper.Common\JustDialScraper.Common.csproj" />

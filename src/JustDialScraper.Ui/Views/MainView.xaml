@@ -5,12 +5,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:progRing="clr-namespace:AvaloniaProgressRing;assembly=AvaloniaProgressRing"
+    xmlns:vm="clr-namespace:JustDialScraper.Ui.ViewModels;assembly=JustDialScraper.Ui"
     Title="JustDial Listings Extractor"
     Width="800"
     Height="600"
     MinWidth="800"
     MinHeight="600"
     mc:Ignorable="d">
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -36,7 +40,7 @@
         <Button Grid.Column="3">
             <StackPanel>
                 <Path Data="{StaticResource Icon.Location}" />
-                <TextBlock Text="Select..." />
+                <TextBlock Text="Manage..." />
             </StackPanel>
         </Button>
 
@@ -52,7 +56,7 @@
         <Button Grid.Row="1" Grid.Column="3">
             <StackPanel>
                 <Path Data="{StaticResource Icon.Edit}" />
-                <TextBlock Text="Select..." />
+                <TextBlock Text="Manage..." />
             </StackPanel>
         </Button>
 
@@ -61,29 +65,42 @@
             Grid.ColumnSpan="2"
             Classes="Label"
             Text="Maximim number of listing pages to traverse?" />
-        <Slider Grid.Row="2" Grid.Column="2" />
+        <Slider
+            Grid.Row="2"
+            Grid.Column="2"
+            Maximum="5000"
+            Minimum="10"
+            Value="{Binding SearchParameter.MaxListingsToTraverse}" />
         <TextBox
             Grid.Row="2"
             Grid.Column="3"
-            Classes="Numeric" />
+            Classes="Numeric"
+            Text="{Binding SearchParameter.MaxListingsToTraverse}" />
 
         <TextBlock
             Grid.Row="3"
             Grid.ColumnSpan="2"
             Classes="Label"
             Text="Number of concurrent web requests to execute?" />
-        <Slider Grid.Row="3" Grid.Column="2" />
+        <Slider
+            Grid.Row="3"
+            Grid.Column="2"
+            Maximum="50"
+            Minimum="1"
+            Value="{Binding SearchParameter.ConcurrentWebRequests}" />
         <TextBox
             Grid.Row="3"
             Grid.Column="3"
-            Classes="Numeric" />
+            Classes="Numeric"
+            Text="{Binding SearchParameter.ConcurrentWebRequests}" />
 
         <TextBlock
             Grid.Row="4"
             Classes="Label"
             FontWeight="Bold"
             Foreground="{DynamicResource LightGreenDarken3Brush}"
-            Text="0 listings found." />
+            IsVisible="{Binding !!Listings.Count}"
+            Text="{Binding Listings.Count, StringFormat='{}{0} listings found.'}" />
         <StackPanel
             Grid.Row="4"
             Grid.Column="1"
@@ -101,19 +118,19 @@
                     <TextBlock Text="Start Searching" />
                 </StackPanel>
             </Button>
-            <Button>
+            <Button IsVisible="{Binding SearchCommand.IsExecuting}">
                 <StackPanel>
                     <Path Data="{StaticResource Icon.Cancel}" />
                     <TextBlock Text="Stop Searching" />
                 </StackPanel>
             </Button>
-            <Button>
+            <Button IsEnabled="{Binding !!Listings.Count}">
                 <StackPanel>
                     <Path Data="{StaticResource Icon.Export}" />
                     <TextBlock Text="Export Listings..." />
                 </StackPanel>
             </Button>
-            <Button Margin="8,4,2,4">
+            <Button Margin="8,4,2,4" Command="{Binding ClearCommand}">
                 <StackPanel>
                     <Path Data="{StaticResource Icon.Delete}" />
                     <TextBlock Text="Clear" />
@@ -124,7 +141,8 @@
         <ListBox
             Grid.Row="5"
             Grid.ColumnSpan="4"
-            Classes="Listings">
+            Classes="Listings"
+            Items="{Binding Listings}">
             <ListBox.Styles>
                 <Style Selector="ListBoxItem">
                     <Setter Property="Margin" Value="2" />
@@ -139,18 +157,20 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TextBlock Classes="Label" Text="Version 1.0.0.0" />
+            <TextBlock Classes="Label" Text="{Binding Version, StringFormat='Version {0}'}" />
             <progRing:ProgressRing
                 Grid.Column="1"
                 Width="18"
                 Height="18"
                 Margin="4"
                 VerticalAlignment="Center"
-                Foreground="{DynamicResource LightGreenDarken3Brush}" />
+                Foreground="{DynamicResource LightGreenDarken3Brush}"
+                IsActive="{Binding SearchCommand.IsExecuting}" />
             <TextBlock
                 Grid.Column="2"
                 Classes="Label"
                 Foreground="{DynamicResource LightGreenDarken3Brush}"
+                IsVisible="{Binding SearchCommand.IsExecuting}"
                 Text="Loading, please wait..." />
             <Button Grid.Column="3">
                 <StackPanel>

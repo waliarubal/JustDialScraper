@@ -2,7 +2,7 @@
 
 namespace JustDialScraper.Ui.Models
 {
-    public class ScanOptionsModel: ModelBase
+    public class ListingModel: ModelBase
     {
     }
 }
