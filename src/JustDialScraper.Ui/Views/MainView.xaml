@@ -4,11 +4,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:progRing="clr-namespace:AvaloniaProgressRing;assembly=AvaloniaProgressRing"
     Title="JustDial Listings Extractor"
     Width="800"
     Height="600"
+    MinWidth="800"
+    MinHeight="600"
     mc:Ignorable="d">
-    <Grid Margin="4">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
@@ -20,6 +23,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
@@ -66,11 +71,93 @@
             Grid.Row="3"
             Grid.ColumnSpan="2"
             Classes="Label"
-            Text="Maximim number of concurrent web requests?" />
+            Text="Number of concurrent web requests to execute?" />
         <Slider Grid.Row="3" Grid.Column="2" />
         <TextBox
             Grid.Row="3"
             Grid.Column="3"
             Classes="Numeric" />
+
+        <TextBlock
+            Grid.Row="4"
+            Classes="Label"
+            FontWeight="Bold"
+            Foreground="{DynamicResource LightGreenDarken3Brush}"
+            Text="0 listings found." />
+        <StackPanel
+            Grid.Row="4"
+            Grid.Column="1"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <StackPanel.Styles>
+                <Style Selector="Button">
+                    <Setter Property="MinWidth" Value="80" />
+                </Style>
+            </StackPanel.Styles>
+            <Button>
+                <StackPanel>
+                    <Path Data="{StaticResource Icon.Search}" />
+                    <TextBlock Text="Start Searching" />
+                </StackPanel>
+            </Button>
+            <Button>
+                <StackPanel>
+                    <Path Data="{StaticResource Icon.Cancel}" />
+                    <TextBlock Text="Stop Searching" />
+                </StackPanel>
+            </Button>
+            <Button>
+                <StackPanel>
+                    <Path Data="{StaticResource Icon.Export}" />
+                    <TextBlock Text="Export Listings..." />
+                </StackPanel>
+            </Button>
+            <Button Margin="8,4,2,4">
+                <StackPanel>
+                    <Path Data="{StaticResource Icon.Delete}" />
+                    <TextBlock Text="Clear" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <ListBox
+            Grid.Row="5"
+            Grid.ColumnSpan="4"
+            Classes="Listings">
+            <ListBox.Styles>
+                <Style Selector="ListBoxItem">
+                    <Setter Property="Margin" Value="2" />
+                </Style>
+            </ListBox.Styles>
+        </ListBox>
+
+        <Grid Grid.Row="6" Grid.ColumnSpan="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Classes="Label" Text="Version 1.0.0.0" />
+            <progRing:ProgressRing
+                Grid.Column="1"
+                Width="18"
+                Height="18"
+                Margin="4"
+                VerticalAlignment="Center"
+                Foreground="{DynamicResource LightGreenDarken3Brush}" />
+            <TextBlock
+                Grid.Column="2"
+                Classes="Label"
+                Foreground="{DynamicResource LightGreenDarken3Brush}"
+                Text="Loading, please wait..." />
+            <Button Grid.Column="3">
+                <StackPanel>
+                    <Path Data="{StaticResource Icon.Medal}" />
+                    <TextBlock Text="Register Product..." />
+                </StackPanel>
+            </Button>
+        </Grid>
     </Grid>
 </Window>

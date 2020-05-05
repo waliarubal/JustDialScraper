@@ -4,8 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:JustDialScraper.Ui">
     <Application.Styles>
-        <StyleInclude Source="avares://Avalonia.Themes.Default/DefaultTheme.xaml" />
-        <StyleInclude Source="avares://Avalonia.Themes.Default/Accents/BaseDark.xaml" />
+        <StyleInclude Source="avares://Material.Avalonia/Material.Avalonia.Templates.xaml" />
+        <StyleInclude Source="avares://Material.Avalonia/Material.Avalonia.Dark.xaml" />
+        <StyleInclude Source="avares://AvaloniaProgressRing/Styles/ProgressRing.xaml" />
         <StyleInclude Source="/Assets/Styles/ImageStyles.xaml" />
         <StyleInclude Source="/Assets/Styles/SharedStyles.xaml" />
     </Application.Styles>
