@@ -7,12 +7,12 @@
     Title="Manage"
     Width="640"
     Height="480"
-    WindowStartupLocation="CenterOwner"
+    MinWidth="640"
+    MinHeight="480"
     mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
@@ -22,16 +22,25 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBox Classes="Entry" />
-        <Button Grid.Column="1" ToolTip.Tip="Search">
-            <Path Data="{StaticResource Icon.Search}" />
-        </Button>
-        <ListBox Grid.Row="1" Grid.ColumnSpan="2">
+        <Border Classes="Entry">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBox Watermark="Type keyword &amp; click search icon." />
+                <Button ToolTip.Tip="Search">
+                    <Path Data="{StaticResource Icon.Search}" />
+                </Button>
+            </Grid>
+        </Border>
+
+        <ListBox Grid.Row="1">
         </ListBox>
 
         <StackPanel
             Grid.RowSpan="2"
-            Grid.Column="2"
+            Grid.Column="1"
             VerticalAlignment="Center">
             <Button ToolTip.Tip="Add">
                 <Path Data="{StaticResource Icon.ArrowRight}" />
@@ -41,9 +50,9 @@
             </Button>
         </StackPanel>
 
-        <ListBox Grid.RowSpan="2" Grid.Column="3">
+        <ListBox Grid.RowSpan="2" Grid.Column="2">
         </ListBox>
-        <Button Grid.Column="4" ToolTip.Tip="Remove Selected">
+        <Button Grid.Column="3" ToolTip.Tip="Remove Selected">
             <Path Data="{StaticResource Icon.Delete}" />
         </Button>
     </Grid>

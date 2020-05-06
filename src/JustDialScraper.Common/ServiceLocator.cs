@@ -1,8 +1,9 @@
 ﻿using Nancy.TinyIoc;
+using System;
 
 namespace JustDialScraper.Common
 {
-    public sealed class ServiceLocator
+    public sealed class ServiceLocator: IDisposable
     {
         static ServiceLocator _instance;
         static object _syncRoot;
@@ -16,6 +17,8 @@ namespace JustDialScraper.Common
         {
             Container = new TinyIoCContainer();
         }
+
+        #region properties
 
         public static ServiceLocator Instance
         {
@@ -33,6 +36,13 @@ namespace JustDialScraper.Common
 
         internal TinyIoCContainer Container { get; }
 
+        #endregion
+
+        public bool Unregister<T>()
+        {
+            return Container.Unregister<T>();
+        }
+
         public void RegisterSingleton<TInterface, T>() where TInterface : class where T : class, TInterface
         {
             Container.Register<TInterface, T>().AsSingleton();
@@ -46,6 +56,11 @@ namespace JustDialScraper.Common
         public T Resolve<T>() where T : class
         {
             return Container.Resolve<T>();
+        }
+
+        public void Dispose()
+        {
+            Container.Dispose();
         }
     }
 }
