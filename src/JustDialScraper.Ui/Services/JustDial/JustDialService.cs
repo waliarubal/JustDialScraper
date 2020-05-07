@@ -47,7 +47,10 @@ namespace JustDialScraper.Ui.Services
         {
             var locations = new List<string>();
 
-            await Driver.Options().Timeouts.SetImplicitWait(TimeSpan.FromSeconds(10));
+            var waitTime = TimeSpan.FromSeconds(10);
+
+            await Driver.Options().Timeouts.SetImplicitWait(waitTime);
+            await Driver.Options().Timeouts.SetAsynchronousJavaScript(waitTime);
 
             await Driver.GoToUrl(JUST_DIAL_URL);
 
