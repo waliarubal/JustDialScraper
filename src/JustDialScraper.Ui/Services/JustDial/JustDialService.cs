@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Zu.AsyncWebDriver.Remote;
 using Zu.Chrome;
+using Zu.WebBrowser.BasicTypes;
 
 namespace JustDialScraper.Ui.Services
 {
@@ -54,18 +55,16 @@ namespace JustDialScraper.Ui.Services
 
             await Driver.GoToUrl(JUST_DIAL_URL);
 
-            var cityInputNode = await Driver.FindElementByCssSelector("input[id=\"city\"]");
+            var cityInputNode = await Driver.FindElementById("city");
             if (cityInputNode == null)
                 return locations;
 
-
-            if (string.IsNullOrWhiteSpace(keyword))
-                await cityInputNode.Click();
-            else
+            await cityInputNode.Click();
+            if (!string.IsNullOrWhiteSpace(keyword))
             {
-                await cityInputNode.Click();
                 await cityInputNode.Clear();
                 await cityInputNode.SendKeys(keyword);
+                await cityInputNode.SendKeys(Keys.Return);
             }
 
             var cityDropDownNode = await Driver.FindElementByCssSelector("span[class=\"city-drop dn\"]");

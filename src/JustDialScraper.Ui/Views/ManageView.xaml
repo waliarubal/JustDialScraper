@@ -42,7 +42,12 @@
             </Grid>
         </Border>
 
-        <ListBox Grid.Row="1">
+        <ListBox Grid.Row="1" Items="{Binding SearchResults}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
 
         <StackPanel
