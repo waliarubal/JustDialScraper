@@ -24,12 +24,23 @@ namespace JustDialScraper.Ui
         {
             BootstrapServices();
 
-            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            var lifetime = ApplicationLifetime as IClassicDesktopStyleApplicationLifetime;
+            if (lifetime != null)
             {
-                desktop.MainWindow = new MainView();
+                lifetime.MainWindow = new MainView();
+                lifetime.Exit += Exit;
             }
 
             base.OnFrameworkInitializationCompleted();
+        }
+
+        void Exit(object sender, ControlledApplicationLifetimeExitEventArgs e)
+        {
+            var lifetime = sender as IClassicDesktopStyleApplicationLifetime;
+            if (lifetime != null)
+                lifetime.Exit -= Exit;
+
+            ServiceLocator.Instance.Resolve<IJustDialService>().Dispose();
         }
     }
 }

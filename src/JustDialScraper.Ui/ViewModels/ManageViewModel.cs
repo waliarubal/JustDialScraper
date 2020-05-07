@@ -1,7 +1,6 @@
 ﻿using JustDialScraper.Common.Base;
 using JustDialScraper.Common.Commands;
 using JustDialScraper.Ui.Services;
-using OpenQA.Selenium.Firefox;
 using System.Windows.Input;
 
 namespace JustDialScraper.Ui.ViewModels
@@ -37,8 +36,7 @@ namespace JustDialScraper.Ui.ViewModels
 
         async void SearchAction(string keyword)
         {
-            var driver = new FirefoxDriver();
-            driver.Url = "https://www.justdial.com";
+            var x = await _justDialService.GetLocations(keyword);
         }
     }
 }
