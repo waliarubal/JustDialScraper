@@ -4,12 +4,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:JustDialScraper.Ui.ViewModels;assembly=JustDialScraper.Ui"
     Title="Manage"
     Width="640"
     Height="480"
     MinWidth="640"
     MinHeight="480"
     mc:Ignorable="d">
+    <Window.DataContext>
+        <vm:ManageViewModel />
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -28,14 +32,17 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBox Watermark="Type keyword &amp; click search icon." />
-                <Button ToolTip.Tip="Search">
+                <TextBox Text="{Binding Keyword}" Watermark="Type keyword &amp; click search icon." />
+                <Button
+                    Command="{Binding SearchCommand}"
+                    CommandParameter="{Binding Keyword}"
+                    ToolTip.Tip="Search">
                     <Path Data="{StaticResource Icon.Search}" />
                 </Button>
             </Grid>
         </Border>
 
-        <ListBox Grid.Row="1">
+        <ListBox Grid.Row="1" Items="{Binding SearchResults}">
         </ListBox>
 
         <StackPanel

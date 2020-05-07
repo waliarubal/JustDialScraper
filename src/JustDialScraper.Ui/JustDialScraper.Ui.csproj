@@ -16,22 +16,13 @@
     <AvaloniaResource Include="Assets\Images\**" />
   </ItemGroup>
   <ItemGroup>
-    <AvaloniaResource Remove="Views\ManageView.xaml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="Views\ManageView.xaml" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.9.9" />
     <PackageReference Include="Avalonia.Desktop" Version="0.9.9" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="0.9.9" />
     <PackageReference Include="Deadpikle.AvaloniaProgressRing" Version="0.8.5" />
     <PackageReference Include="Material.Avalonia" Version="0.9.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\ManageView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
+    <PackageReference Include="RestSharp" Version="106.10.1" />
+    <PackageReference Include="RestSharp.Serializers.Utf8Json" Version="106.10.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JustDialScraper.Common\JustDialScraper.Common.csproj" />

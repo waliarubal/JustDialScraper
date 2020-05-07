@@ -1,6 +1,8 @@
 ﻿using JustDialScraper.Common.Base;
 using JustDialScraper.Common.Commands;
 using JustDialScraper.Ui.Models;
+using JustDialScraper.Ui.Services;
+using JustDialScraper.Ui.Views;
 using System;
 using System.Reflection;
 using System.Windows.Input;
@@ -9,12 +11,16 @@ namespace JustDialScraper.Ui.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        ICommand _clear, _search;
+        ICommand _clear, _search, _manage;
+        readonly IPlatformService _platformService;
+        readonly IJustDialService _justDialService;
 
         public MainViewModel()
         {
             Version = Assembly.GetExecutingAssembly().GetName().Version;
             Listings = new ListingCollectionModel();
+            _platformService = Resolve<IPlatformService>();
+            _justDialService = Resolve<IJustDialService>();
 
             ClearCommand.Execute(null);
         }
@@ -55,6 +61,22 @@ namespace JustDialScraper.Ui.ViewModels
 
                 return _search;
             }
+        }
+
+        public ICommand ManageCommand
+        {
+            get
+            {
+                if (_manage == null)
+                    _manage = new RelayCommand(ManageAction);
+
+                return _manage;
+            }
+        }
+
+        async void ManageAction()
+        {
+            await _platformService.OpenModal<ManageView, bool>(640, 480);
         }
 
         void SearchAction(SearchParameterModel searchParameter)

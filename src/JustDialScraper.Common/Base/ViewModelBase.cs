@@ -1,4 +1,6 @@
-﻿namespace JustDialScraper.Common.Base
+﻿using Avalonia.Controls;
+
+namespace JustDialScraper.Common.Base
 {
     public abstract class ViewModelBase : ModelBase
     {
@@ -10,6 +12,8 @@
         #region properties
 
         public abstract bool IsCachable { get; }
+
+        protected bool IsDesignMode => Design.IsDesignMode;
 
         public string Title
         {
@@ -33,6 +37,9 @@
 
         protected T Resolve<T>() where T : class
         {
+            if (IsDesignMode)
+                return default;
+
             return ServiceLocator.Instance.Resolve<T>();
         }
     }

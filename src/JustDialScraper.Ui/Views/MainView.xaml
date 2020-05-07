@@ -44,7 +44,7 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TextBox IsReadOnly="True" Watermark="Click on the map icon to manage locations." />
-                <Button ToolTip.Tip="Manage locations...">
+                <Button Command="{Binding ManageCommand}" ToolTip.Tip="Manage locations...">
                     <Path Data="{StaticResource Icon.Location}" />
                 </Button>
             </Grid>
@@ -65,7 +65,7 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TextBox IsReadOnly="True" Watermark="Click on the clipboard icon to manage keywords or categories." />
-                <Button ToolTip.Tip="Manage keywords and categories...">
+                <Button Command="{Binding ManageCommand}" ToolTip.Tip="Manage keywords and categories...">
                     <Path Data="{StaticResource Icon.Edit}" />
                 </Button>
             </Grid>
