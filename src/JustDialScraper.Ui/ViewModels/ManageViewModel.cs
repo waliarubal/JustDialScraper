@@ -17,6 +17,8 @@ namespace JustDialScraper.Ui.ViewModels
             _justDialService = Resolve<IJustDialService>();
         }
 
+        #region properties
+
         public override bool IsCachable => false;
 
         public string Keyword
@@ -30,6 +32,8 @@ namespace JustDialScraper.Ui.ViewModels
             get => Get<ObservableCollection<string>>();
             private set => Set(value);
         }
+
+        #endregion
 
         public ICommand SearchCommand
         {
