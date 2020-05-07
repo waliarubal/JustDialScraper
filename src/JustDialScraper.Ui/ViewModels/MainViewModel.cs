@@ -76,7 +76,7 @@ namespace JustDialScraper.Ui.ViewModels
 
         async void ManageAction()
         {
-            await _platformService.OpenModal<ManageView, bool>(640, 480);
+            await _platformService.OpenModal<ManageView, bool>();
         }
 
         void SearchAction(SearchParameterModel searchParameter)

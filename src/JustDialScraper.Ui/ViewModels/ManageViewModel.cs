@@ -1,8 +1,7 @@
 ﻿using JustDialScraper.Common.Base;
 using JustDialScraper.Common.Commands;
-using JustDialScraper.Ui.Models;
 using JustDialScraper.Ui.Services;
-using System.Collections.ObjectModel;
+using OpenQA.Selenium.Firefox;
 using System.Windows.Input;
 
 namespace JustDialScraper.Ui.ViewModels
@@ -25,12 +24,6 @@ namespace JustDialScraper.Ui.ViewModels
             set => Set(value);
         }
 
-        public ObservableCollection<IJustDialRecord> SearchResults
-        {
-            get => Get<ObservableCollection<IJustDialRecord>>();
-            private set => Set(value);
-        }
-
         public ICommand SearchCommand
         {
             get
@@ -44,8 +37,8 @@ namespace JustDialScraper.Ui.ViewModels
 
         async void SearchAction(string keyword)
         {
-            var records = await _justDialService.GetLocations(keyword);
-            SearchResults = new ObservableCollection<IJustDialRecord>(records);
+            var driver = new FirefoxDriver();
+            driver.Url = "https://www.justdial.com";
         }
     }
 }

@@ -42,7 +42,7 @@
             </Grid>
         </Border>
 
-        <ListBox Grid.Row="1" Items="{Binding SearchResults}">
+        <ListBox Grid.Row="1">
         </ListBox>
 
         <StackPanel
