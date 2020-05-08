@@ -35,6 +35,8 @@ namespace JustDialScraper.Ui.Services
             }
         }
 
+        TimeSpan WaitTime { get; } = TimeSpan.FromSeconds(10);
+
         public void Dispose()
         {
             if (_driver == null)
@@ -48,14 +50,9 @@ namespace JustDialScraper.Ui.Services
         {
             var locations = new List<string>();
 
-            var waitTime = TimeSpan.FromSeconds(10);
-
-            await Driver.Options().Timeouts.SetImplicitWait(waitTime);
-            await Driver.Options().Timeouts.SetAsynchronousJavaScript(waitTime);
-
             await Driver.GoToUrl(JUST_DIAL_URL);
 
-            var cityInputNode = await Driver.FindElementById("city");
+            var cityInputNode = await Driver.FindElementById("city", WaitTime);
             if (cityInputNode == null)
                 return locations;
 
@@ -67,11 +64,11 @@ namespace JustDialScraper.Ui.Services
                 await cityInputNode.SendKeys(Keys.Return);
             }
 
-            var cityDropDownNode = await Driver.FindElementByCssSelector("span[class=\"city-drop dn\"]");
+            var cityDropDownNode = await Driver.FindElementByCssSelector("span[class=\"city-drop dn\"]", WaitTime);
             if (cityDropDownNode == null)
                 return locations;
 
-            var cityNodes = await Driver.FindElementsByCssSelector("span[class=\"city-drop dn\"]>ul>li");
+            var cityNodes = await Driver.FindElementsByCssSelector("span[class=\"city-drop dn\"]>ul>li", WaitTime);
             if (cityNodes == null)
                 return locations;
 

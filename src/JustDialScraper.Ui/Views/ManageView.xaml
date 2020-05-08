@@ -23,10 +23,13 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Border Classes="Entry">
+        <TextBlock Classes="Label" Text="Search JustDial for Items:" />
+        <Border Grid.Row="1" Classes="Entry">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -42,15 +45,16 @@
             </Grid>
         </Border>
 
-        <ListBox Grid.Row="1" Items="{Binding SearchResults}">
+        <ListBox Grid.Row="2" Items="{Binding SearchResults}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding}" />
+                    <TextBlock Margin="4,2" Text="{Binding}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
         <StackPanel
+            Grid.Row="1"
             Grid.RowSpan="2"
             Grid.Column="1"
             VerticalAlignment="Center">
@@ -62,9 +66,19 @@
             </Button>
         </StackPanel>
 
-        <ListBox Grid.RowSpan="2" Grid.Column="2">
+        <TextBlock
+            Grid.Column="2"
+            Classes="Label"
+            Text="Selected Items:" />
+        <ListBox
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            Grid.Column="2">
         </ListBox>
-        <Button Grid.Column="3" ToolTip.Tip="Remove Selected">
+        <Button
+            Grid.Row="1"
+            Grid.Column="3"
+            ToolTip.Tip="Remove Selected">
             <Path Data="{StaticResource Icon.Delete}" />
         </Button>
     </Grid>
