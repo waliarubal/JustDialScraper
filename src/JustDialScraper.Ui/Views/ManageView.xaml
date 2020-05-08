@@ -13,9 +13,6 @@
     MinHeight="480"
     common:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
-    <Design.DataContext>
-        <vm:ManageViewModel />
-    </Design.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
