@@ -4,7 +4,6 @@ using JustDialScraper.Ui.Models;
 using JustDialScraper.Ui.Services;
 using JustDialScraper.Ui.Views;
 using System;
-using System.Reflection;
 using System.Windows.Input;
 
 namespace JustDialScraper.Ui.ViewModels
@@ -15,13 +14,14 @@ namespace JustDialScraper.Ui.ViewModels
         readonly IPlatformService _platformService;
         readonly IJustDialService _justDialService;
 
-        public MainViewModel()
+        public MainViewModel(IPlatformService platformService, IJustDialService justDialService)
         {
-            Version = Assembly.GetExecutingAssembly().GetName().Version;
-            Listings = new ListingCollectionModel();
-            _platformService = Resolve<IPlatformService>();
-            _justDialService = Resolve<IJustDialService>();
+            _platformService = platformService;
+            _justDialService = justDialService;
 
+            Version = _platformService.GetAssemblyVersion();
+            Listings = new ListingCollectionModel();
+            
             ClearCommand.Execute(null);
         }
 

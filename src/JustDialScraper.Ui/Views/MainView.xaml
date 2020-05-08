@@ -2,6 +2,7 @@
     x:Class="JustDialScraper.Ui.Views.MainView"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:common="https://github.com/waliarubal/schemas"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:progRing="clr-namespace:AvaloniaProgressRing;assembly=AvaloniaProgressRing"
@@ -11,11 +12,12 @@
     Height="600"
     MinWidth="800"
     MinHeight="600"
+    common:ViewModelLocator.AutoWireViewModel="True"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-    <Window.DataContext>
+    <Design.DataContext>
         <vm:MainViewModel />
-    </Window.DataContext>
+    </Design.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />

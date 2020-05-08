@@ -2,6 +2,7 @@
     x:Class="JustDialScraper.Ui.Views.ManageView"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:common="https://github.com/waliarubal/schemas"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:JustDialScraper.Ui.ViewModels;assembly=JustDialScraper.Ui"
@@ -10,10 +11,11 @@
     Height="480"
     MinWidth="640"
     MinHeight="480"
+    common:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
-    <Window.DataContext>
+    <Design.DataContext>
         <vm:ManageViewModel />
-    </Window.DataContext>
+    </Design.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />

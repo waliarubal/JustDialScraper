@@ -11,10 +11,11 @@ namespace JustDialScraper.Ui.ViewModels
         readonly IJustDialService _justDialService;
         ICommand _search;
 
-        public ManageViewModel()
+        public ManageViewModel(IJustDialService justDialService)
         {
+            _justDialService = justDialService;
+
             SearchResults = new ObservableCollection<string>();
-            _justDialService = Resolve<IJustDialService>();
         }
 
         #region properties
