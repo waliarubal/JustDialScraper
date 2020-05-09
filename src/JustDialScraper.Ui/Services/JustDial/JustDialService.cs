@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using Zu.AsyncWebDriver.Remote;
 using Zu.Chrome;
@@ -21,9 +20,10 @@ namespace JustDialScraper.Ui.Services
             {
                 if (_driver == null)
                 {
-                    var isHeadless = !Debugger.IsAttached;
+                    var isHeadless = false; //!Debugger.IsAttached;
 
                     var config = new ChromeDriverConfig();
+                    config.SetCommandLineArgumets("--disable-gpu --window-size=1280,800");
                     config.Headless = isHeadless;
 
                     var chromeDriver = new AsyncChromeDriver(config);
@@ -57,12 +57,10 @@ namespace JustDialScraper.Ui.Services
                 return locations;
 
             await cityInputNode.Click();
+            await cityInputNode.Clear();
             if (!string.IsNullOrWhiteSpace(keyword))
-            {
-                await cityInputNode.Clear();
-                await cityInputNode.SendKeys(keyword);
-                await cityInputNode.SendKeys(Keys.Return);
-            }
+                await cityInputNode.SendKeys(keyword);   
+            await cityInputNode.SendKeys(Keys.Return);
 
             var cityDropDownNode = await Driver.FindElementByCssSelector("span[class=\"city-drop dn\"]", WaitTime);
             if (cityDropDownNode == null)
