@@ -32,6 +32,9 @@ namespace JustDialScraper.Common
 
         static void AutoWireViewModelChanged(AvaloniaObject control, AvaloniaPropertyChangedEventArgs e)
         {
+            if (Design.IsDesignMode)
+                return;
+
             if (!(bool)e.NewValue)
                 return;
             
