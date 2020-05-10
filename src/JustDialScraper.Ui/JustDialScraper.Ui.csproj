@@ -16,12 +16,12 @@
     <AvaloniaResource Include="Assets\Images\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="AsyncChromeDriver" Version="0.5.5" />
     <PackageReference Include="Avalonia" Version="0.9.10" />
     <PackageReference Include="Avalonia.Desktop" Version="0.9.10" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="0.9.10" />
     <PackageReference Include="Deadpikle.AvaloniaProgressRing" Version="0.8.5" />
     <PackageReference Include="Material.Avalonia" Version="0.9.0" />
+    <PackageReference Include="PuppeteerSharp" Version="2.0.3" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JustDialScraper.Common\JustDialScraper.Common.csproj" />
